@@ -10,7 +10,7 @@ jobs:
   deploy:
     name: Pipeline Deploy
     runs-on: ubuntu-latest
-    enviroment: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
+    environment: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
