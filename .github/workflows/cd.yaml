@@ -10,7 +10,7 @@ jobs:
   deploy:
     name: Pipeline Deploy
     runs-on: ubuntu-latest
-
+    enviroment: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,10 +31,8 @@ jobs:
       
       - name: Deploy Vercel Development
         if: github.ref == 'refs/heads/development'
-        environment: dev
         run: npx vercel --token=${{ secrets.VERCEL_TOKEN }} --yes
 
       - name: Deploy Vercel Production
         if: github.ref == 'refs/heads/main'
-        environment: prod
         run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
