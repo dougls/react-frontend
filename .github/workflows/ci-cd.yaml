@@ -42,7 +42,7 @@ jobs:
         run: npm install -g snyk
 
       - name: Run Snyk Scan
-        run: snyk test --sarif-file-output=snyk.sarif
+        run: snyk test --severity-threshold=low --sarif-file-output=snyk.sarif
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
