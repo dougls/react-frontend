@@ -2,7 +2,9 @@ name: CD - Continuos Delivery
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - development
 
 jobs:
   deploy:
@@ -26,6 +28,11 @@ jobs:
 
       - name: Build app
         run: npm run build
+      
+      - name: Deploy Vercel Development
+        if: github.ref == 'refs/heads/development'
+        run: npx vercel --token=${{ secrets.VERCEL_TOKEN }} --yes
 
-      - name: Deploy Vercel
+      - name: Deploy Vercel Production
+        if: github.ref == 'refs/heads/main'
         run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
