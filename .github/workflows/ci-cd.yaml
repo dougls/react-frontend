@@ -13,7 +13,7 @@ jobs:
     name: Tests
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Install Node
