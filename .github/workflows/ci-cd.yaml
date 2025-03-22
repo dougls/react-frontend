@@ -39,6 +39,11 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       
+      - name: Add unused function
+        run: |
+          echo "function unusedFunction() { return 'not tested'; }" >> src/utils.js
+          echo "function untestedCase() { return Math.random() > 0.5 ? 'A' : 'B'; }" >> src/utils.js
+
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
