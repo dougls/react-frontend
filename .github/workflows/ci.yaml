@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Run Lint
-        run: npm run lint || echo "Linting issues found"
+        run: npm run lint
 
       - name: Run tests
         run: npm test --watchAll=false
